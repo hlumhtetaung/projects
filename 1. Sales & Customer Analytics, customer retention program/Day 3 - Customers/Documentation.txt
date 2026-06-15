@@ -1,0 +1,44 @@
+1. One time customers
+
+CREATE TABLE one_time_customers AS
+SELECT customer_id, customer_name, city, state, country
+FROM cleaned_retail_data
+WHERE customer_id IN (
+    SELECT customer_id
+    FROM cleaned_retail_data
+    GROUP BY customer_id
+    HAVING COUNT(DISTINCT(order_id)) < 2
+    )
+GROUP BY customer_id;
+    
+2. Standard customers
+
+CREATE TABLE standard_customers AS
+SELECT customer_id, customer_name, city, state, country
+FROM cleaned_retail_data
+WHERE customer_id IN (
+    SELECT customer_id
+    FROM cleaned_retail_data
+    GROUP BY customer_id
+    HAVING COUNT(DISTINCT(order_id)) >= 2 AND COUNT(DISTINCT(order_id)) <= 10
+    )
+GROUP BY customer_id;
+
+3. Regular customers
+
+CREATE TABLE standard_customers AS
+SELECT customer_id, customer_name, city, state, country
+FROM cleaned_retail_data
+WHERE customer_id IN (
+    SELECT customer_id
+    FROM cleaned_retail_data
+    GROUP BY customer_id
+    HAVING COUNT(DISTINCT(order_id)) > 10
+    )
+GROUP BY customer_id;
+
+
+total one time customers: 13
+total standard customers: 737
+total regular customers: 43
+total customers: 793

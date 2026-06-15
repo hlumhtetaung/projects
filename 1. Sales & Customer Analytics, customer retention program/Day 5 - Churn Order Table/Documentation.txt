@@ -1,0 +1,10 @@
+1. Churned Order Table
+================================
+
+CREATE TABLE churned_order_table AS
+SELECT category, sub_category, SUM(sales) AS total_sales, COUNT(*) AS churned_customers_no
+FROM churned_customers
+GROUP BY sub_category
+ORDER BY churned_customers_no DESC;
+
+* Investigate why these categories and sub_categories experience higher churn rate if possible.

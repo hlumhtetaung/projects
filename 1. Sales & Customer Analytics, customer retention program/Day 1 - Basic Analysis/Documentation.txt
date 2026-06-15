@@ -1,0 +1,66 @@
+Scripts
+==========================
+1. Table Creation (Column Names)
+
+CREATE TABLE cleaned_retail_data(
+    row_id INT PRIMARY KEY NOT NULL,
+    order_id VARCHAR(255) NOT NULL,
+    order_date DATE NOT NULL,
+    ship_date DATE NOT NULL,
+    ship_mode VARCHAR(100) NOT NULL,
+    customer_id VARCHAR(100) NOT NULL,
+    customer_name VARCHAR(255) NOT NULL,
+    segment VARCHAR(100) NOT NULL,
+    country VARCHAR(100) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    postal_code INT NOT NULL,
+    region VARCHAR(100) NOT NULL,
+    product_id VARCHAR(100) NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    sub_category VARCHAR(100) NOT NULL,
+    product_name VARCHAR(255) NOT NULL,
+    sales DECIMAL(10,2) NOT NULL
+);
+
+2. Imported the cleaned retail data
+
+3. Checking data length
+
+SELECT COUNT(*)
+FROM cleaned_retail_data;
+
+4. Find out the most popular product.
+
+CREATE TABLE top_20_bestselling_products as
+SELECT product_name, COUNT(product_name) as product_order_count
+FROM cleaned_retail_data
+GROUP BY product_name
+ORDER BY product_order_count DESC
+LIMIT 20;
+
+5. Find out the best selling year
+
+CREATE TABLE best_selling_years AS
+SELECT EXTRACT(YEAR FROM order_date) AS order_year, SUM(sales) AS total_sales
+FROM cleaned_retail_data
+GROUP BY order_year
+ORDER BY total_sales DESC;
+
+6. Which customer segment is most likely to use what ship mode?
+
+- SELECT DISTINCT(segment) FROM cleaned_retail_data; (Consumer, Corporate, Home office)
+
+- SELECT DISTINCT(ship_mode) FROM cleaned_retail_data; (Second class, First class, Standard, Same day)
+
+CREATE TABLE most_likely_used_shipmode_per_segment AS
+SELECT segment, COUNT(*) AS total_count,
+  ROUND(100.0 * COUNT(CASE WHEN ship_mode = 'First Class' THEN 1 END) / COUNT(*), 2) AS first_class,
+  ROUND(100.0 * COUNT(CASE WHEN ship_mode = 'Second Class' THEN 1 END) / COUNT(*), 2) AS second_class,
+  ROUND(100.0 * COUNT(CASE WHEN ship_mode = 'Standard Class' THEN 1 END) / COUNT(*), 2) AS standard_class,
+  ROUND(100.0 * COUNT(CASE WHEN ship_mode = 'Same Day' THEN 1 END) / COUNT(*), 2) AS same_day
+  
+FROM cleaned_retail_data
+GROUP BY segment
+ORDER BY total_count DESC;
+

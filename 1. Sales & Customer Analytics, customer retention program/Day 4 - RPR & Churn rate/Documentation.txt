@@ -1,0 +1,38 @@
+1. Repeated Purchase Rate
+===================================
+total customers: 793
+
+RPR = (793 - 13) / 793
+RPR = 0.98
+
+98% repeated rate with only 13 one-timers.
+
+2. Churn Rate
+=====================================
+total one time customers: 13
+total standard customers: 737
+total regular customers: 43
+total customers: 793
+
+Time window: 100 days
+
+SELECT order_date
+FROM cleaned_retail_data
+ORDER BY order_date DESC;
+
+Latest Date: 2018-12-30
+
+CREATE TABLE churned_customers AS
+SELECT customer_id, customer_name, MAX(order_date) AS last_purchase_date, category, sub_category, sales
+FROM cleaned_retail_data
+GROUP BY customer_id, customer_name
+HAVING last_purchase_date <= '2018-09-21'
+ORDER BY last_purchase_date DESC;
+
+Total number of churned customers: 328
+
+Churn rate: 328/793 = 0.41
+
+* Losing customers in last 100 days.
+
+

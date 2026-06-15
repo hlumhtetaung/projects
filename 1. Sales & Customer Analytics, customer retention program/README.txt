@@ -1,0 +1,1 @@
+Please read word documentation first to understand context first before further checking data cleaning and query findings.

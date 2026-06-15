@@ -1,0 +1,43 @@
+1. Finding Active Customers who are possible for churning
+====================================================================
+CREATE TABLE active_churn_customer AS 
+WITH customer_gap AS (
+    SELECT customer_id, customer_name, DATEDIFF(MAX(order_date), MIN(order_date)) AS alltime_gap, COUNT(DISTINCT(order_id)) AS number_of_purchases,
+    DATEDIFF('2018-12-30', MAX(order_date)) AS current_silence_window, ROUND(SUM(sales), 2) AS total_spending
+    FROM cleaned_retail_data
+    GROUP BY customer_id, customer_name
+    HAVING current_silence_window < 100
+),
+analysis AS (
+    SELECT  
+        customer_id,
+        customer_name,
+        current_silence_window,
+        total_spending,
+        CASE 
+            WHEN number_of_purchases <= 1 THEN 30 
+            WHEN alltime_gap = 0 THEN 30
+    
+            ELSE (alltime_gap / (number_of_purchases - 1))
+        END AS avg_days_between_purchases
+    FROM 
+        customer_gap 
+)
+SELECT 
+    customer_id,
+    customer_name,
+    ROUND(avg_days_between_purchases, 1) AS personal_rhythm_days,
+    current_silence_window AS days_since_last_purchase,
+    ROUND(current_silence_window / avg_days_between_purchases, 2) AS deviation_risk_score,
+    total_spending
+FROM 
+    analysis
+WHERE 
+    (current_silence_window / avg_days_between_purchases) > 1.0
+ORDER BY 
+    total_spending DESC;
+
+
+Result: 4 customers who are about to churn.
+
+

@@ -1,0 +1,56 @@
+1. Finding one time purchased orders
+
+CREATE TABLE one_time_customers AS
+SELECT *
+FROM cleaned_retail_data
+WHERE customer_id IN (
+    SELECT customer_id
+    FROM cleaned_retail_data
+    GROUP BY customer_id
+    HAVING COUNT(DISTINCT(order_id)) < 2
+    );
+
+one time orders: 28
+total sales from one time orders: 5181.76
+
+2. Finding standard (2-10 times purchased) orders
+
+CREATE TABLE standard_customers AS
+SELECT *
+FROM cleaned_retail_data
+WHERE customer_id IN (
+    SELECT customer_id
+    FROM cleaned_retail_data
+    GROUP BY customer_id
+    HAVING COUNT(DISTINCT(order_id)) >= 2 AND COUNT(DISTINCT(order_id)) <= 10
+    );
+
+standard orders: 8707
+total sales from standard orders: 2020562.20
+
+3. Finding regular orders (>10)
+
+CREATE TABLE standard_customers AS
+SELECT *
+FROM cleaned_retail_data
+WHERE customer_id IN (
+    SELECT customer_id
+    FROM cleaned_retail_data
+    GROUP BY customer_id
+    HAVING COUNT(DISTINCT(order_id)) > 10
+    );
+
+
+regular orders: 1065
+total sales from regular orders: 235793.01
+
+SELECT COUNT(DISTINCT(customer_id))
+FROM cleaned_retail_data
+WHERE customer_id IN (
+    SELECT customer_id
+    FROM cleaned_retail_data
+    GROUP BY customer_id
+    HAVING condition
+    );
+
+total all time sales: 2261536.97

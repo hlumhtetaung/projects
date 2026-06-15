@@ -1,0 +1,7 @@
+Basic Analysis
+==================
+Find out the most popular product. (Staple envelope)
+
+Find out which year has the highest revenue. (2018 - 722051.96)
+
+Find out what type of shipping mode is the customer of specific segment most likely to use. 
