@@ -1,3 +1,0 @@
-https://www.kaggle.com/datasets/iamhungundji/covid19-symptoms-checker
-
-https://www.kaggle.com/datasets/imdevskp/corona-virus-report
