@@ -100,3 +100,13 @@
 2026-08-05 09:56:06.078: [INFO] BookmarksLoadDropped droppedNodes=0
 2026-08-05 09:56:06.078: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
 2026-08-05 09:56:53.756: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-08-06 17:00:06.070: [INFO] CurrentProfilePath: C:\!Bachelor Program\!Module Two\Software Development\Coursework\coursework 2\40841063_HLUM HTET AUNG Coursework 2\Dice Game\.metadata\.plugins\org.eclipse.swt\EBWebView\Default
+2026-08-06 17:00:06.070: [INFO] Profiles total count: 1
+2026-08-06 17:00:06.071: [INFO] Profile: name=Profile 1 path=C:\!Bachelor Program\!Module Two\Software Development\Coursework\coursework 2\40841063_HLUM HTET AUNG Coursework 2\Dice Game\.metadata\.plugins\org.eclipse.swt\EBWebView\Default lastActive=2026-07-31T04:07:12.606Z
+2026-08-06 17:00:06.071: [INFO] LastUsedProfileDir: C:\!Bachelor Program\!Module Two\Software Development\Coursework\coursework 2\40841063_HLUM HTET AUNG Coursework 2\Dice Game\.metadata\.plugins\org.eclipse.swt\EBWebView\Default
+2026-08-06 17:00:06.071: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\!Bachelor Program\!Module Two\Software Development\Coursework\coursework 2\40841063_HLUM HTET AUNG Coursework 2\Dice Game\.metadata\.plugins\org.eclipse.swt\EBWebView\Default lastActive=2026-07-31T04:07:12.606Z
+2026-08-06 17:00:06.071: [INFO] OnDoneLoading sync enabled: 0
+2026-08-06 17:00:06.071: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-08-06 17:00:06.071: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-08-06 17:00:06.071: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-08-06 17:28:01.755: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
