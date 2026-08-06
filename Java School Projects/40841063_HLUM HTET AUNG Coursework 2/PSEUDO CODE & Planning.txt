@@ -1,0 +1,65 @@
+Variables - Bank balance, Round number (probably), bet amount, dice results
+
+Before computer rolls the dice, bet some money from the bank
+- If numbers are sequential, double the bet
+- If numbers are identical, triple the bet
+- Else, lose the bet
+
+Additional rules
+- $6 in the bank, when game starts
+- User is allowed to make up to five bets before the game ends
+- The game ends when user run out of money, or five bets are made
+- At the end of the game user will be told which condition ended the game
+
+Result Display
+- One row per bet - bet amount, numbers rolled, amount of money earned or lost for that bet
+- One row at the end, amount remaining in the bank at the end of the game
+
+Advanced Features
+- Variable bet amount (asks user how much they would like to bet between $1 and $4 (integers))
+- High score table (asks username and display scoreboard table, the higher the bank balance the higher the user will be)
+
+Above and Beyond
+- Maybe add currency changer
+perchance :)
+- 
+
+PSEUDOCODE
+=============================
+START
+    SET bank_balance = 6
+    SET round = 1
+    
+    INPUT user_name
+
+    WHILE round <= 5 AND bank_balance > 0 DO
+        REPEAT
+            INPUT bet_amount (between 1 and 4)
+        UNTIL bet_amount <= bank_balance AND bet_amount >= 1 AND bet_amount <= 4
+
+        bank_balance = bank_balance - bet_amount
+        
+        die1 = RANDOM(1, 6)
+        die2 = RANDOM(1, 6)
+
+        IF die1 == die2 THEN
+            bank_balance = bank_balance + (bet_amount * 3)  // Identical: Triple
+        ELSE IF ABS(die1 - die2) == 1 THEN
+            bank_balance = bank_balance + (bet_amount * 2)  // Sequential: Double
+        ENDIF
+
+        STORE round, bet_amount, die1, die2, bank_balance
+        round += 1
+    ENDWHILE
+
+    IF bank_balance <= 0 THEN
+        OUTPUT "Game Over: You ran out of money!"
+    ELSE
+        OUTPUT "Game Over: You completed 5 bets!"
+    ENDIF
+
+    DISPLAY bet_history_table
+    OUTPUT "Final Bank Balance: $" + bank_balance
+    
+    UPDATE_AND_DISPLAY_HIGHSCORES(user_name, bank_balance)
+END

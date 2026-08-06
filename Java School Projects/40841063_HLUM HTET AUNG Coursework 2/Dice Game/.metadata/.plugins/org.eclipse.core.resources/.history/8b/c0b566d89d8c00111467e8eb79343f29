@@ -1,0 +1,41 @@
+package part2DiceGame;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
+public class ResultBoard {
+    private static List<String> history = new ArrayList<>();
+
+    public static void recordRound(int roundNum, int betAmount, int die1, int die2, int netEarnings) {
+        String outcome = (netEarnings >= 0) ? "+£" + netEarnings : "-£" + Math.abs(netEarnings);
+        
+        String roundRecord = String.format("Round %d | Bet: £%d | Rolled: [%d, %d] | Earned/Lost: %s", 
+                roundNum, betAmount, die1, die2, outcome);
+        
+        history.add(roundRecord);
+    }
+
+    public static void displayFinalResults(int finalBankBalance) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("================ GAME RESULTS ================\n\n");
+        
+        for (String record : history) {
+            sb.append(record).append("\n");
+        }
+        
+        sb.append("\n==============================================");
+        sb.append("\nFinal Remaining Bank Balance: £").append(finalBankBalance);
+        
+        String summaryText = sb.toString();
+
+        // Print to Console
+        System.out.println(summaryText);
+
+        // Print to JOptionPane
+        JOptionPane.showMessageDialog(null, summaryText, "Final Scoreboard", JOptionPane.INFORMATION_MESSAGE);
+        
+        // Clear history for potential fresh games
+        history.clear();
+    }
+}

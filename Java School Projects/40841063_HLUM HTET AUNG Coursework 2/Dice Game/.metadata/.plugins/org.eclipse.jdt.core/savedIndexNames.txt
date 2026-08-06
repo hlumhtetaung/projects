@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+C:\!Bachelor Program\!Module Two\Software Development\Coursework\coursework 2\40841063_HLUM HTET AUNG Coursework 2\Dice Game\.metadata\.plugins\org.eclipse.jdt.core
+1920182616.index
+1865797976.index
+3162089354.index

@@ -1,0 +1,23 @@
+package part2DiceGame;
+
+
+public class RewardCondition {
+	public static String condition(int die1, int die2, int bet_amount, int bank_balance) {
+		String message = "";
+		if (Math.abs(die1 - die2) == 1) {
+			message += "Congrats! Your bet has doubled. Bank balance: ";
+			bank_balance += (bet_amount * 2);
+		} else if (die1 == die2) {
+			message += "Congrats! Your bet has trippled. Bank balance: ";
+			bank_balance += (bet_amount * 3);
+		} else {
+			message += "Sorry. You did not win this time. Bank balance: ";
+		}
+		
+		// Final return message
+		return message + bank_balance;
+		
+		
+		
+	}
+}

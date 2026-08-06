@@ -1,0 +1,67 @@
+package part1;
+
+public class Average {
+
+	// 2. Average rows, columns and whole matrix
+	public static void averageTable(int[][] matrix) {
+		// calculating number of rows and columns
+		int numRows = matrix.length;
+		int numCols = matrix[0].length;
+		
+		double[] rowsAvg = new double[numRows];
+		double[] colsAvg = new double[numCols];
+		
+		int sum;
+		int totalSum = 0;
+		double wholeAvg;
+		String outputForSecondLargest = "";
+		
+		// System.out.println("The matrix has " + numRows + " rows and " + numCols + " columns.");
+		
+		// Note: Delete this console test print
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numCols; j++) {
+				System.out.print(matrix[i][j] + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		
+		// Row average calculation
+		System.out.println("The average for each row: ");
+		for (int i = 0; i < numRows; i++) {
+			sum = 0;
+			for (int j = 0; j < numCols; j++) {
+				sum += matrix[i][j];
+			}
+			rowsAvg[i] = (double)sum / numCols;
+			System.out.println(String.format("%.2f", (double) sum / numCols)); // testing row average results
+		}
+		System.out.println();
+		
+		// Column average calculation
+		System.out.println("The average for each column: ");
+		for (int j = 0; j < numCols; j++) {
+		    sum = 0;
+
+		    for (int i = 0; i < numRows; i++) {
+		        sum += matrix[i][j];
+		    }
+
+		    colsAvg[j] = (double) sum / numRows;
+		    System.out.print(String.format("%.2f", (double) sum / numRows) + " "); // testing column average results
+		}
+		System.out.println();
+		System.out.println();
+		
+		// Whole matrix average
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numCols; j++) {
+				totalSum += matrix[i][j];
+			}
+		}
+		wholeAvg = (double) totalSum / (numRows * numCols);
+		System.out.println("The average for whole matrix: " + String.format("%.2f", wholeAvg));
+	}
+
+}

@@ -1,0 +1,7 @@
+package part2DiceGame;
+
+public class DiceRolling {
+	public static void diceprogram() { // called from betting program for rolling dice
+		
+	}
+}

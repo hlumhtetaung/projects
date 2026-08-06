@@ -1,0 +1,60 @@
+package part2DiceGame;
+
+import java.util.Arrays;
+
+import javax.swing.JOptionPane;
+
+public class ScoreBoard {
+    // Stores history lines for the current active player's game
+    private static String boardHistory = "";
+
+    // Call this after EACH round during gameplay to build the current player's log
+    public static void recordRound(int roundNum, int betAmount, int die1, int die2, int netEarnings) {
+        String outcome = (netEarnings >= 0) ? "+£" + netEarnings : "-£" + Math.abs(netEarnings);
+        
+        boardHistory += "Round " + roundNum + " | Bet: £" + betAmount + 
+                        " | Rolled: [" + die1 + ", " + die2 + "]" + 
+                        " | Net: " + outcome + "\n";
+    }
+
+    // Call this ONCE at the end of the game
+    public static void board(String username, int bank_balance) {
+        // --- 1. Define 10 Dummy Players (Names & Final Balances) ---
+        String[] names = {
+            "Alice", "Bob", "Charlie", "David", "Emma", 
+            "Frank", "Grace", "Hannah", "Ian", "Jack", 
+            username // 11th entry: Active player
+        };
+        
+        int[] balances = {
+            12, 4, 25, 0, 18, 
+            8, 15, 2, 30, 10, 
+            bank_balance // Active player's balance
+        };
+
+        // Sorting balances
+        Arrays.sort(balances);
+
+        // --- 3. Build the Display String ---
+        String output = "================ GAME SUMMARY ================\n"
+                      + "Player: " + username + "\n"
+                      + "----------------------------------------------\n"
+                      + boardHistory + "\n"
+                      + "================ TOP RANKINGS ================\n";
+
+        for (int i = 0; i < names.length; i++) {
+            int rank = i + 1;
+            String isCurrentPlayerMark = names[i].equals(username) ? " <-- YOU" : "";
+            output += String.format("#%-2d %-10s : £%d%s\n", rank, names[i], balances[i], isCurrentPlayerMark);
+        }
+
+        output += "==============================================";
+
+        // --- 4. Display on Console & JOptionPane ---
+        System.out.println(output);
+        JOptionPane.showMessageDialog(null, output, "Leaderboard & Final Results", JOptionPane.INFORMATION_MESSAGE);
+
+        // Reset game history for future runs
+        boardHistory = "";
+    }
+}

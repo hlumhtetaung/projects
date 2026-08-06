@@ -1,0 +1,17 @@
+package part2DiceGame;
+
+import javax.swing.JOptionPane;
+
+public class DiceGame {
+
+	public static void game() {
+		int bank_balance = 6;
+		int round_count = 1;
+		
+		String username = JOptionPane.showInputDialog("Enter username");
+		
+		BettingProgram.program(bank_balance, round_count);
+	}
+
+
+}

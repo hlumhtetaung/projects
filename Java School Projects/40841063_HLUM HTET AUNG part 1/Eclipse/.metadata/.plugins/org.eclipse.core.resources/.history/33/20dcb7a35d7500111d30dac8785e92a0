@@ -1,0 +1,56 @@
+package part1;
+
+import javax.swing.JOptionPane;
+
+public class Transform {
+
+	public static void matrixTransformation(int[][] matrix) {
+		int numRows = matrix.length;
+		int numCols = matrix[0].length;
+		
+		double[] rowsAvg = new double[numRows];
+		double[] colsAvg = new double[numCols];
+		// Transforming matrix -1, 0, 1
+		int[][] modifiedMatrix = new int[numRows][numCols];
+		
+		// Counters for Step 5
+		int countPlusOne = 0;
+		int countMinusOne = 0;
+		int countZero = 0;
+		String outputForTransformation = "";
+		
+		for (int i = 0; i < numRows; i++) {
+			for (int j = 0; j < numCols; j++) {
+				// Larger than both row and column averages
+				if (matrix[i][j] > rowsAvg[i] && matrix[i][j] > colsAvg[j]) {
+					modifiedMatrix[i][j] = 1;
+					countPlusOne++;
+				} 
+				// Smaller than both row and column averages
+				else if (matrix[i][j] < rowsAvg[i] && matrix[i][j] < colsAvg[j]) {
+					modifiedMatrix[i][j] = -1;
+					countMinusOne++;
+				} 
+				// Condition for 0
+				else {
+					modifiedMatrix[i][j] = 0;
+					countZero++;
+				}
+			}
+		}
+		
+		
+		Print.print(modifiedMatrix);
+		// output for transformation count
+		System.out.println("\n--- Cell Value Counts ---");
+		System.out.println("Cells with value +1: " + countPlusOne);
+		System.out.println("Cells with value -1: " + countMinusOne);
+		System.out.println("Cells with value  0: " + countZero);
+		outputForTransformation = "\n--- Cell Value Counts ---\n" +
+                "Cells with value +1: " + countPlusOne + "\n" +
+                "Cells with value -1: " + countMinusOne + "\n" +
+                "Cells with value  0: " + countZero + "\n";
+		JOptionPane.showMessageDialog(null, outputForTransformation);
+	}
+
+}

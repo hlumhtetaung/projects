@@ -1,0 +1,7 @@
+package part2DiceGame;
+
+public class ScoreBoard {
+	public static void board(String username, int bank_balance) {
+		
+	}
+}
