@@ -11,6 +11,7 @@ public class BettingProgram { // called from DiceGame for betting program
 		if (username == null || username.trim().isEmpty()) {
 			username = "Jimmy (Default)";
 		}
+		
 		System.out.println("Username: " + username);
 		JOptionPane.showMessageDialog(null, "Hello, " + username + "\nYou have £" + bank_balance
 				+ " in your bank account.");
@@ -82,11 +83,40 @@ public class BettingProgram { // called from DiceGame for betting program
 			System.out.println("Game Over: You completed " + maxRound+ " bets!");
 		}
 		
+		// See final bank balance in other currencies
+		int choice = JOptionPane.showConfirmDialog(null, "Do you want to see your remaining bank balance in other currency?", 
+				"Currency Selection", JOptionPane.YES_NO_OPTION);
+		if (choice == JOptionPane.YES_OPTION) {
+			// Bank Balance Currency Converter
+			String[] currencies = {"GBP", "USD", "EUR", "MMK"};
+
+			String currency = (String) JOptionPane.showInputDialog(
+			        null,
+			        "Choose your currency:",
+			        "Currency Selection",
+			        JOptionPane.QUESTION_MESSAGE,
+			        null,
+			        currencies,
+			        currencies[0]
+			);
+
+			if (currency == null) {
+			    System.exit(0);
+			}
+
+			String symbol = CurrencyChanger.getSymbol(currency);
+			
+			JOptionPane.showMessageDialog(null, "Your bank balance in " + symbol + ": " + 
+					CurrencyChanger.convert(bank_balance, currency));
+		}
+			
+		
 		// Output final result board to both Console and JOptionPane
-        ResultBoard.displayFinalResults(bank_balance);
-        
-        // ADVANCED FEATURE 2: displaying score board
-        ScoreBoard.board(username, bank_balance);
+	    ResultBoard.displayFinalResults(bank_balance);
+	        
+	    // ADVANCED FEATURE 2: displaying score board
+	    ScoreBoard.board(username, bank_balance);
+		
 		
 	}
 }
