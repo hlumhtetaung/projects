@@ -1,0 +1,45 @@
+// HLUM HTET AUNG (40841063)
+
+package part2DiceGame;
+
+import javax.swing.JOptionPane;
+
+public class DiceFighter {
+	public static void dicefight() {
+		int round = 0;
+		int userwins = 0;
+		int computerwins = 0;
+		int user_total, computer_total;
+		int choice = JOptionPane.showConfirmDialog(null, "Do you want to play dice fighter?", 
+				"Select Yes or No", JOptionPane.YES_NO_OPTION);
+		
+		if (choice == JOptionPane.YES_OPTION) {
+			int[] userResults = DiceRolling.diceprogram();
+			int[] computerResults = DiceRolling.diceprogram();
+			user_total = userResults[0] + userResults[1];
+			computer_total = computerResults[0] + computerResults[1];
+			
+			JOptionPane.showMessageDialog(null, "The dice roll total for user: " + user_total);
+			JOptionPane.showMessageDialog(null, "The dice roll total for computer: " + computer_total);
+			
+			if (user_total > computer_total) {
+				userwins += 1;
+			} else {
+				computerwins += 1;
+			}
+			
+			round += 1;
+		} else {
+			
+		}
+		
+		if (userwins > computerwins) {
+			JOptionPane.showMessageDialog(null, "After " + round + " rounds, User won the game.");
+			JOptionPane.showMessageDialog(null, "After " + round + " rounds, Computer won the game.");
+		}
+		
+		
+		
+	}
+	
+}

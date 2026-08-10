@@ -1,0 +1,14 @@
+// 40841063 HLUM HTET AUNG
+
+package part2DiceGame;
+
+public class DiceFighter {
+	public static void main(String[] args) {
+		
+		
+		
+		int[] userResults = DiceRolling.diceprogram();
+		int[] computerResults = DiceRolling.diceprogram();
+	}
+	
+}

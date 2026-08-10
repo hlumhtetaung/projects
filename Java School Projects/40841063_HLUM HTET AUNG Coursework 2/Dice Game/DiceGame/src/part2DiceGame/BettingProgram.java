@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 
 public class BettingProgram { // called from DiceGame for betting program
 	public static void betprogram(int bank_balance, int bet_amount, int round_count, int maxRound) {
+		// Ask user if they are sure
+		
 		System.out.println("Dice Game Console Log\n===================================");
 		String username = JOptionPane.showInputDialog("Enter username");
 		if (username == null || username.trim().isEmpty()) {

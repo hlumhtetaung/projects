@@ -1,0 +1,7 @@
+package part2DiceGame;
+
+public class DiceFighter {
+	public static void main(String[] args) {
+		
+	}
+}

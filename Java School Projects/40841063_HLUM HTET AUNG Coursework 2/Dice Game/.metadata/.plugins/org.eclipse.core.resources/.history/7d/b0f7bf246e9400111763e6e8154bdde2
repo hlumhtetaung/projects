@@ -1,0 +1,9 @@
+package part2DiceGame;
+
+public class DiceFighter {
+	public static void main(String[] args) {
+		int[] diceResults = DiceRolling.diceprogram();
+		System.out.println(diceResults);
+	}
+	
+}

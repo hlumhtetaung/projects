@@ -1,0 +1,18 @@
+// HLUM HTET AUNG (40841063)
+
+package part2DiceGame;
+
+public class DiceGame {
+
+	public static void game() { // Final game object and called from main
+		final int bank_balance = 6;
+		int round_count = 1;
+		int bet_amount = 0;
+		final int maxRound = 5;
+		
+		BettingProgram.betprogram(bank_balance, bet_amount, round_count, maxRound);
+		
+	}
+
+
+}
