@@ -21,8 +21,9 @@ public class DiceFighter {
 				user_total = userResults[0] + userResults[1];
 				computer_total = computerResults[0] + computerResults[1];
 				
-				JOptionPane.showMessageDialog(null, "The dice roll total for user: " + user_total);
-				JOptionPane.showMessageDialog(null, "The dice roll total for computer: " + computer_total);
+				JOptionPane.showMessageDialog(null, "Round " + roundCount + "\n========================\n"
+												+ "The dice roll total for user: " 
+												+ user_total + "\n" + "The dice roll total for computer: " + computer_total);
 				
 				System.out.println("The dice roll total for user: " + user_total);
 				System.out.println("The dice roll total for computer: " + computer_total);
@@ -34,7 +35,7 @@ public class DiceFighter {
 				}
 				
 				roundCount += 1;
-			} while (roundCount <= maxRound);
+			} while (roundCount < maxRound);
 		} else {
 			DiceGame.game();
 		}
@@ -42,9 +43,12 @@ public class DiceFighter {
 		if (userwins > computerwins) {
 			JOptionPane.showMessageDialog(null, "After " + roundCount + " rounds, User won the game.");
 			System.out.println("After " + roundCount + " rounds, User won the game.");
-		} else {
+		} else if (computerwins > userwins) {
 			JOptionPane.showMessageDialog(null, "After " + roundCount + " rounds, Computer won the game.");
 			System.out.println("After " + roundCount + " rounds, Computer won the game.");
+		} else if (computerwins == userwins) {
+			JOptionPane.showMessageDialog(null, "After " + roundCount + " rounds, The game is draw.");
+			System.out.println("After " + roundCount + " rounds, The game is draw.");
 		}
 		
 		
