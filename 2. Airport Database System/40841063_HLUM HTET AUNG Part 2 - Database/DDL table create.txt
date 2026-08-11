@@ -1,0 +1,115 @@
+Union_Table
+CREATE TABLE Union_Table (
+    union_id INT AUTO_INCREMENT PRIMARY KEY,
+    union_name VARCHAR(100) NOT NULL,
+    membership_status VARCHAR(50)
+);
+
+
+Employee
+CREATE TABLE Employee (
+    ssn VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    address VARCHAR(255),
+    phone_number VARCHAR(20),
+    salary DECIMAL(10,2),
+    union_id INT NOT NULL,
+
+    CONSTRAINT fk_employee_union
+        FOREIGN KEY (union_id)
+        REFERENCES Union_Table(union_id)
+);
+
+
+Airplane_models
+CREATE TABLE Airplane_models (
+    model_number VARCHAR(20) PRIMARY KEY,
+    capacity INT,
+    weight DECIMAL(10,2),
+    seats INT,
+    max_speed DECIMAL(10,2)
+);
+
+
+Airplane
+CREATE TABLE Airplane (
+    registration_number VARCHAR(20) PRIMARY KEY,
+    model_number VARCHAR(20) NOT NULL,
+
+    CONSTRAINT fk_airplane_model
+        FOREIGN KEY (model_number)
+        REFERENCES Airplane_models(model_number)
+);
+
+
+Technicians
+CREATE TABLE Technicians (
+    ssn VARCHAR(20) PRIMARY KEY,
+    hourly_rate DECIMAL(10,2),
+    specialization_area VARCHAR(100),
+
+    CONSTRAINT fk_technician_employee
+        FOREIGN KEY (ssn)
+        REFERENCES Employee(ssn)
+);
+
+
+Traffic_controllers
+CREATE TABLE Traffic_controllers (
+    ssn VARCHAR(20) PRIMARY KEY,
+    hourly_rate DECIMAL(10,2),
+    last_examination_date DATE,
+
+    CONSTRAINT fk_traffic_controller_employee
+        FOREIGN KEY (ssn)
+        REFERENCES Employee(ssn)
+);
+
+
+Technician_experties
+CREATE TABLE Technician_experties (
+    model_number VARCHAR(20),
+    ssn VARCHAR(20),
+
+    PRIMARY KEY (model_number, ssn),
+
+    CONSTRAINT fk_expertise_model
+        FOREIGN KEY (model_number)
+        REFERENCES Airplane_models(model_number),
+
+    CONSTRAINT fk_expertise_technician
+        FOREIGN KEY (ssn)
+        REFERENCES Technicians(ssn)
+);
+
+
+Airworthiness_tests_model
+CREATE TABLE Airworthiness_tests_model (
+    test_number INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    max_score DECIMAL(5,2)
+);
+
+
+Test_events
+CREATE TABLE Test_events (
+    test_event_number INT AUTO_INCREMENT PRIMARY KEY,
+    test_number INT NOT NULL,
+    registration_number VARCHAR(20) NOT NULL,
+    ssn VARCHAR(20) NOT NULL,
+    date DATE,
+    hours_spent DECIMAL(5,2),
+    score DECIMAL(5,2),
+
+    CONSTRAINT fk_test_event_test
+        FOREIGN KEY (test_number)
+        REFERENCES Airworthiness_tests_model(test_number),
+
+    CONSTRAINT fk_test_event_airplane
+        FOREIGN KEY (registration_number)
+        REFERENCES Airplane(registration_number),
+
+    CONSTRAINT fk_test_event_technician
+        FOREIGN KEY (ssn)
+        REFERENCES Technicians(ssn)
+);
