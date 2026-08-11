@@ -1,8 +1,0 @@
-package part2DiceGame;
-
-public class RewardCondition {
-	public static String condition() {
-		return null;
-		
-	}
-}
