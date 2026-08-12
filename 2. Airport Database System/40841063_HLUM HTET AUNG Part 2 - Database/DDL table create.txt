@@ -97,7 +97,7 @@ CREATE TABLE Test_events (
     test_number INT NOT NULL,
     registration_number VARCHAR(20) NOT NULL,
     ssn VARCHAR(20) NOT NULL,
-    date DATE,
+    test_date DATE,
     hours_spent DECIMAL(5,2),
     score DECIMAL(5,2),
 
