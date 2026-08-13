@@ -1,0 +1,58 @@
+Query 1 - Aircraft test performance
+SELECT am.model_number, a.registration_number, t.ssn AS technician_ssn, COUNT(te.test_event_number) AS total_test_events,
+     SUM(te.hours_spent) AS total_test_hours, AVG(te.score) AS average_test_score
+     FROM Test_events te
+     JOIN Airplane a ON te.registration_number = a.registration_number
+     JOIN Airplane_models am ON a.model_number = am.model_number
+     JOIN Technicians t ON te.ssn = t.ssn
+     GROUP BY am.model_number;
+
+Query 2 - Technician annual performance
+SELECT e.ssn AS technician_ssn, e.name AS technician_name,
+     YEAR(te.test_date) AS test_year, COUNT(te.test_event_number) AS total_tests, SUM(te.hours_spent)
+     FROM Employee e
+     JOIN Technicians t ON e.ssn = t.ssn
+     JOIN Test_events te ON t.ssn = te.ssn
+     GROUP BY e.ssn, e.name, YEAR(te.test_date)
+     ORDER BY total_tests DESC;
+
+Query 3 - Recently Examined Traffic Controllers
+SELECT e.ssn, e.name AS controller_name, tc.last_examination_date
+     FROM Employee e
+     JOIN Traffic_controllers tc ON e.ssn = tc.ssn
+     ORDER BY tc.last_examination_date DESC;
+
+Query 4 - Aircraft Safety Check
+SELECT
+         am.model_number,
+         a.registration_number,
+         e.name AS technician_name,
+         te.score AS latest_score,
+         hist_avg.avg_historical_score AS historical_average,
+         CASE
+             WHEN te.score >= hist_avg.avg_historical_score THEN 'Pass'
+             ELSE 'Review Required'
+         END AS safety_status
+     FROM Test_events te
+     JOIN Airplane a ON te.registration_number = a.registration_number
+     JOIN Airplane_models am ON a.model_number = am.model_number
+     JOIN Technicians t ON te.ssn = t.ssn
+     JOIN Employee e ON t.ssn = e.ssn
+     JOIN (
+         SELECT registration_number, AVG(score) AS avg_historical_score
+         FROM Test_events
+         GROUP BY registration_number
+     ) hist_avg ON te.registration_number = hist_avg.registration_number
+     WHERE te.test_date = (
+         SELECT MAX(test_date)
+         FROM Test_events
+         WHERE registration_number = te.registration_number
+     );
+
+Query 5 - Technician Experties Summary
+SELECT e.ssn, e.name AS technician_name, am.model_number, t.specialization_area
+     FROM Employee e
+     JOIN Technicians t ON e.ssn = t.ssn
+     JOIN Technician_experties te ON t.ssn = te.ssn
+     JOIN Airplane_models am ON te.model_number = am.model_number
+     ORDER BY am.model_number, e.name;
