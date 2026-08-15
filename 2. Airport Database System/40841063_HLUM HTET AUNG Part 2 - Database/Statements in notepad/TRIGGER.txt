@@ -1,0 +1,48 @@
+CREATE TABLE Update_log (
+    log_id INT AUTO_INCREMENT PRIMARY KEY,
+    table_name VARCHAR(100) NOT NULL,
+    record_id VARCHAR(100) NOT NULL,
+    action VARCHAR(20) NOT NULL,
+    old_value VARCHAR(255),
+    new_value VARCHAR(255),
+    changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    changed_by VARCHAR(100) NOT NULL
+);
+
+DELIMITER $$
+
+CREATE TRIGGER trg_test_events_update
+AFTER UPDATE ON Test_events
+FOR EACH ROW
+BEGIN
+    INSERT INTO Update_Log
+    (
+        table_name,
+        record_id,
+        action,
+        old_value,
+        new_value,
+        changed_at,
+        changed_by
+    )
+    VALUES
+    (
+        'Test_events',
+        OLD.test_event_number,
+        'UPDATE',
+        CONCAT(
+            'test_date=', OLD.test_date,
+            ', hours_spent=', OLD.hours_spent,
+            ', score=', OLD.score
+        ),
+        CONCAT(
+            'test_date=', NEW.test_date,
+            ', hours_spent=', NEW.hours_spent,
+            ', score=', NEW.score
+        ),
+        CURRENT_TIMESTAMP,
+        CURRENT_USER()
+    );
+END$$
+
+DELIMITER ;
