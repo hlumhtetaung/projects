@@ -17,14 +17,25 @@ public class BettingProgram { // called from DiceGame for betting program
 				username = "Jimmy (Default)";
 			}
 			
+			// User name entry
 			System.out.println("Username: " + username);
 			JOptionPane.showMessageDialog(null, "Hello, " + username + "\nYou have £" + bank_balance
 					+ " in your bank account.");
 			System.out.println("Hello, " + username + "\nYou have £" + bank_balance + " in your bank account.");
+			
+			/* 
+			 * This do while loop is the main block that checks if the program will end or not.
+			 * In this do while loop's while condition is the condition that checks if the game is over and
+			 * what condition caused the program to end.
+			 * */
 			do {
 			    
 			    
 			    // Prompt until a valid bet is entered
+				/* 
+				 * Here the while loop is used to ask users valid bet amount so that
+				 * the amount users entered is valid integer and is within the range of 1 to 4 GBP.
+				 * */
 			    while (true) {
 			    	String input = JOptionPane.showInputDialog("Enter bet amount (£1 to £4):");
 			    	
@@ -60,6 +71,12 @@ public class BettingProgram { // called from DiceGame for betting program
 			    
 			    round_count++;
 			    // Storing returning results from dice program in local variables
+			    /*
+			     * This code block is the function call from DiceRolling.
+			     * As the dice rolling class return an array with the random dice rolls, according to the die count, the code block
+			     * here assign those results from the list into die1 and die2 variables. If there is third die, we can assign it to
+			     * die3 variable as the list will have 3 indices.
+			     * */
 			    int[] diceresults = DiceRolling.diceprogram();
 			    int die1 = diceresults[0];
 			    int die2 = diceresults[1];
@@ -89,6 +106,11 @@ public class BettingProgram { // called from DiceGame for betting program
 			}
 			
 			// See final bank balance in other currencies
+			/*
+			 * Currency changer here will pop up after the game has ended. This allow users to see their final remaining balance
+			 * after the betting game in different currencies. The options include GBP (default), USD, EURO, and MMK (Myanmar Kyats).
+			 * The class CurrencyChanger mainly handle the conversions and this code block make use of currency changer class's methods.
+			 * */
 			int choice = JOptionPane.showConfirmDialog(null, "Do you want to see your remaining bank balance in other currency?", 
 					"Currency Selection", JOptionPane.YES_NO_OPTION);
 			if (choice == JOptionPane.YES_OPTION) {
