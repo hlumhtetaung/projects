@@ -128,7 +128,7 @@ public class BettingProgram { // called from DiceGame for betting program
 				);
 	
 				if (currency == null) {
-				    System.exit(0);
+				    currency = "GBP";
 				}
 	
 				String symbol = CurrencyChanger.getSymbol(currency);

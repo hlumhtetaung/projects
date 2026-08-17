@@ -7,9 +7,16 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="UML Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="3HqVrsnEJ200dWaKPmHU6mWvxBs" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -17,11 +24,15 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
+    "DefaultPlantUmlFileTemplate": "UML Class",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/!Bachelor Program/!Module Two/Software Development/Coursework/coursework 2/40841063_HLUM HTET AUNG Coursework 2/Dice Game"
+    "last_opened_file_path": "C:/!Bachelor Program/!Module Two/Software Development/Coursework/coursework 2/40841063_HLUM HTET AUNG Coursework 2/Dice Game",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="SharedIndexes">

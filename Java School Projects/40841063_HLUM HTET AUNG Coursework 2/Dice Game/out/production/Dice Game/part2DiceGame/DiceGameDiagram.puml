@@ -1,0 +1,70 @@
+@startuml
+
+package part2DiceGame {
+
+    class Main {
+        + main(args: String[]): void
+    }
+
+    class DiceGame {
+        + game(): void
+        + askUser(): String
+    }
+
+    class DiceFighter {
+        + dicefight(round_count: int, max_round: int): void
+    }
+
+    class BettingProgram {
+        + betprogram(bank_balance: int, bet_amount: int, round_count: int): void
+    }
+
+    class DiceRolling {
+        + diceprogram(): int[]
+    }
+
+    class RewardCondition {
+        + applyPayout(die1: int, die2: int, bet_amount: int, bank_balance: int): int
+        + getResultMessage(die1: int, die2: int): String
+    }
+
+    class CurrencyChanger {
+        + convert(amount: double, currency: String): double
+        + getSymbol(currency: String): String
+    }
+
+    class ResultBoard {
+        - boardText: String
+        + displayFinalResults(finalBankBalance: int): void
+    }
+
+    class ScoreBoard {
+        - boardHistory: String
+        + board(username: String, bank_balance: int): void
+    }
+
+    class RoundRecorder {
+        - roundHistory: String
+        + recordRound(roundNum: int, betAmount: int, die1: int, die2: int, netEarnings: int): void
+        + getHistory(): String
+        + reset(): void
+    }
+
+    ' Relationships based on diagram arrows
+    Main --> DiceGame : calls
+    DiceGame --> DiceFighter : calls
+    DiceGame --> BettingProgram : calls
+
+    BettingProgram --> DiceRolling : calls
+    BettingProgram --> RewardCondition : calls
+    BettingProgram --> CurrencyChanger : calls
+    BettingProgram --> ResultBoard : calls
+    BettingProgram --> ScoreBoard : calls
+    BettingProgram --> RoundRecorder : calls
+
+    ScoreBoard --> RoundRecorder : calls
+    ResultBoard --> RoundRecorder : calls
+
+}
+
+@enduml
