@@ -107,7 +107,7 @@ def check_for_canary_tokens(file_path):
 
 
 # --- Main Execution ---
-file_to_check = "documents/safe/Sapphire.docx"
+file_to_check = ""
 results = check_for_canary_tokens(file_to_check)
 
 if results is not None:
