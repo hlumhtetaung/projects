@@ -33,7 +33,7 @@ for i in range(data_amount):
 
 print("The outliers in the data are: " + str(outlier_detection(data)))
 
-# Box plot
+# Box plot for visualizations
 plt.boxplot(data)
 plt.title("Box plot of the data")
 plt.xlabel("Data")

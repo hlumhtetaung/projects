@@ -1,11 +1,12 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
+# Normal Distribution Area Percentage Calculator
+
 from statistics import NormalDist
 
+# calculate z score of a normal distribution
 def z_score(point, mean, std_dev):
     return (point - mean) / std_dev
 
+# calculate the percentile of a normal distribution given a z score and direction
 def percentile_calculation(z, direction):
     if direction == "above":
         percentile = 1 - NormalDist().cdf(z)

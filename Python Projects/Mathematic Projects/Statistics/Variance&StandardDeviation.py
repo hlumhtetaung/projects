@@ -1,5 +1,6 @@
 import numpy as np
 
+# calculate variance
 def calculate_variance(data):
     if len(data) == 0:
         print("Data list is empty. Variance cannot be calculated.")
@@ -12,6 +13,7 @@ def calculate_variance(data):
         variance = sum / len(data)
         return variance
 
+# calculate standard deviation with square root of variance
 def calculate_standard_deviation(data):
     if len(data) == 0:
         print("Data list is empty. Standard deviation cannot be calculated.")
