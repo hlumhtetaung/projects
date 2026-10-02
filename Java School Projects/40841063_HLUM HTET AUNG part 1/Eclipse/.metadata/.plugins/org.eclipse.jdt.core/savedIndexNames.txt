@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+C:\!Bachelor Program\!Module Two\Software Development\Coursework\Eclipse\.metadata\.plugins\org.eclipse.jdt.core
-1920182616.index
-4248705392.index
-1865797976.index

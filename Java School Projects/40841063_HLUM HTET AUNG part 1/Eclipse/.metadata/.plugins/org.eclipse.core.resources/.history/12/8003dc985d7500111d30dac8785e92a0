@@ -1,9 +1,0 @@
-package part1;
-
-public class Transform {
-
-	public static void matrixTransformation(int[][] matrix) {
-		
-	}
-
-}
