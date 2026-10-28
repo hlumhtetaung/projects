@@ -1,4 +1,5 @@
 import numpy as np
+from scipy import stats
 import matplotlib.pyplot as plt
 
 maths = [85, 90, 78, 92, 88, 95, 80, 87, 91, 89]
@@ -54,3 +55,21 @@ plt.show()
 p_value = np.sum(np.array(null_distribution) >= original_mean_diff) / number_of_permutations
 print(f"P-value: {p_value}") # 0.0829
 # p value > 0.05, we fail to reject the null hypothesis.
+
+
+# ANOVA (Analysis of Variance) is a statistical method used to compare means of three or more groups to determine, 
+# if at least one group mean is significantly different from the others. 
+# It helps in understanding whether the observed differences in sample means are due to random chance or 
+# if they reflect true differences in the population means.
+
+# Hypothesis for ANOVA: 
+# H0: All group means are equal
+# H1: At least one group mean is different
+
+one_way_anova = stats.f_oneway(maths, physics)
+print(f"ANOVA F-statistic: {one_way_anova.statistic}, P-value: {one_way_anova.pvalue}") # ANOVA F-statistic: 0.0, P-value: 1.0
+
+if one_way_anova.pvalue < 0.05:
+    print("Null hypothesis rejected")
+else:
+    print("Fail to reject the null hypothesis")
